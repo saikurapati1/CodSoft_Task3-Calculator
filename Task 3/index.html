@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            /* background-color: #5bc973; */
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(7deg, #da1128, #402edb, #f18510, #23d5ab);
+            background-size: 300% 300%;
+            animation: color 12s ease-in-out infinite;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #cal {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto repeat(5, 1fr);
+            grid-gap: 10px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 25px;
+            overflow: hidden;
+            background-color: #110c0c;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        #cal h2 {
+            font-size: 18px;
+            color: white;
+        }
+
+        #display {
+            grid-column: span 4;
+            text-align: right;
+            padding: 16px;
+            font-size: 1.9em;
+            color: #fff;
+            background-color: rgb(29, 39, 49);
+            /* border-bottom: 10px solid #000000; */
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 21px;
+            font-size: 1.9em;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background-color: rgb(58 55 28);
+            color: #f3f0ef;
+            border-radius: 50px;
+            transition: background-color 0.3s;
+        }
+
+        button.operator {
+            background-color: rgb(46, 85, 211)
+        }
+
+        button:active {
+            background-color: #7f8c8d;
+        }
+
+        button.clear {
+            background-color: #43df14;
+
+        }
+
+        button:hover {
+            transform: scale(1.07);
+        }
+
+        /* #cla{
+            font-size: 20px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <!-- <section id="cla" class="call"> -->
+
+    <div id="cal">
+        <div class="name">
+            <h2>Calculator</h2>
+        </div>
+        <div id="display">0</div>
+        <br></br>
+        <button onclick="clearDisplay()">C</button>
+        <!-- <button onclick="appendCharacter('()')">()</button> -->
+        <!-- <button>class="operator" onclick="appendCharacter(',')">( )</button> -->
+        <button class="operator" onclick="appendCharacter('/')">/</button>
+        <button class="operator" onclick="appendCharacter('*')">*</button>
+
+        <button onclick="appendCharacter('7')">7</button>
+        <button onclick="appendCharacter('8')">8</button>
+        <button onclick="appendCharacter('9')">9</button>
+        <button class="operator" onclick="appendCharacter('-')">-</button>
+
+
+        <button onclick="appendCharacter('4')">4</button>
+        <button onclick="appendCharacter('5')">5</button>
+        <button onclick="appendCharacter('6')">6</button>
+        <button class="operator" onclick="appendCharacter('+')">+</button>
+
+
+        <button onclick="appendCharacter('1')">1</button>
+        <button onclick="appendCharacter('2')">2</button>
+        <button onclick="appendCharacter('3')">3</button>
+
+
+        <button class="clear" onclick="calculateResult()">=</button>
+        <button onclick="appendCharacter('00')">00</button>
+        <button onclick="appendCharacter('0')">0</button>
+        <button onclick="appendCharacter('.')">.</button>
+    </div>
+    <!-- </section> -->
+
+    <script>
+        let display = document.getElementById('display');
+        let currentInput = '';
+
+        function appendCharacter(char) {
+            currentInput += char;
+            display.textContent = currentInput;
+        }
+        function clearDisplay() {
+            currentInput = '';
+            display.textContent = '0';
+        }
+        function calculateResult() {
+            try {
+                currentInput = eval(currentInput).toString();
+                display.textContent = currentInput;
+            } catch (error) {
+                display.textContent = 'Error';
+            }
+        }
+    </script>
+</body>
+
+</html>
